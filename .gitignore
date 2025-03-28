@@ -1,0 +1,18 @@
+
+# important
+/front-end/src/regex.txt
+
+# next-to-add
+/front-end/src/pages
+/front-end/src/common
+/front-end/src/imgs
+
+# librarys
+/front-end/node_modules/
+/front-end/vite.config.js/
+/front-end/tailwind.config.js
+/front-end/postcss.config.js
+/front-end/package-lock.json
+
+# server-side
+/server
