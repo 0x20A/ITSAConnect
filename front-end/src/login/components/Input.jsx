@@ -25,7 +25,7 @@ export const Input = ({ name, type, id, value, placeholder, icon }) => {
         defaultValue={ value }
         id={ id }
         className={
-          type != "email"
+          name != "matricula"
           ? "input-box"
           : "input-email"
         }
