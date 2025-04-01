@@ -69,7 +69,7 @@ export const PostEditor = () => {
             >
             </textarea>
 
-            <hr className="w-full opacity-10 my-5 " />
+            <hr className="w-full opacity-10 my-5" />
 
             <div id="textEditor" className="font-gelasio ">
 
