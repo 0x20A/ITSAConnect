@@ -1,10 +1,8 @@
 
-# important
-/front-end/src/regex.txt
-
 # next-to-add
-/front-end/src/imgs
 /front-end/src/components
+/front-end/src/pages
+/todo.txt
 
 # librarys
 /front-end/node_modules/

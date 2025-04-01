@@ -1,6 +1,6 @@
 import { useContext, useState } from 'react';
 import { Link, Outlet } from 'react-router-dom';
-import logo from '../imgs/ITSAConnect Logo.svg';
+import logo from '../resources/imgs/ITSAConnect Logo.svg';
 import { UserContext } from '../App';
 import { UserNavigation } from './components/UserNavigation';
 
