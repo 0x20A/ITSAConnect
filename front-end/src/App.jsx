@@ -4,6 +4,8 @@ import { UserAuthForm } from "./login/UserAuthForm";
 import { NavBar } from "./nav-bar/NavBar";
 import { lookInSession } from "./common/Session";
 import { Editor } from "./editor/Editor";
+import { Home } from "./home/Home";
+
 
 export const UserContext = createContext({});
 
@@ -29,6 +31,7 @@ const App = () => {
             <Routes>
                 <Route path="/editor" element={<Editor />} />
                 <Route path="/" element={<NavBar />}>
+                    <Route index element={<Home />} />
                     <Route path="signin" element={ <UserAuthForm type="sign-in" /> } />
                     <Route path="signup" element={ <UserAuthForm type="sign-up" /> } />
                 </Route>

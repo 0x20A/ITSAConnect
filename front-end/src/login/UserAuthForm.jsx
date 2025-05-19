@@ -6,7 +6,6 @@ import {toast, Toaster} from "react-hot-toast";
 import axios from 'axios';
 import { storeInSession } from '../common/Session';
 import { UserContext } from '../App';
-// import googleicon from '../imgs/google.png';
 
 export const UserAuthForm = ({ type }) => {
 
@@ -83,8 +82,7 @@ export const UserAuthForm = ({ type }) => {
 
   // form component to change between sign-in and sign-up
   return (
-    access_token ?
-    <Navigate to="/" />
+    access_token ? <Navigate to="/" />
     :
     <PageAnimation keyValue={ type }>
       <section className="h-cover flex items-center justify-center">
@@ -143,21 +141,6 @@ export const UserAuthForm = ({ type }) => {
               : "Registrarse"  
             }
           </button>
-
-          {/* GOOGLE SIGN */}
-          {/* <div className="relative w-full flex items-center gap-2 my-10 opacity-10 uppercase text-black font-bold">
-
-            <hr className="w-1/2 border-black" />
-            <p>o</p>
-            <hr className="w-1/2 border-black" />
-          
-          </div> */}
-
-          {/* google sign button */}
-          {/* <button className="btn-dark flex items-center justify-center gap-4 w-[90%] center">
-            <img src={ googleicon } alt="google logo" className="w-5"/>
-            continua con Google
-          </button> */}
 
           {/* signin - signup bottom text */}
           {
