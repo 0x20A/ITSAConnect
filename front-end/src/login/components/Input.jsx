@@ -4,14 +4,14 @@ export const Input = ({ name, type, id, value, placeholder, icon }) => {
 
   const [passwordVisible, setPasswordVisible] = useState(false);
 
-  // password visible icon function
+  // funcion para hacer visible la password
   const onPasswordVisible = () => {
     setPasswordVisible( currentValue => !currentValue);
   }
 
   return (
     <div className="relative w-[100%] mb-4">
-      {/* input structure */}
+      {/* estructura */}
       <input
         name={ name }
         type={ 
@@ -31,10 +31,10 @@ export const Input = ({ name, type, id, value, placeholder, icon }) => {
         }
       />
 
-      {/* icon for each input */}
+      {/* icon por cada input */}
       <i className={"fi " + icon + " input-icon"}></i>
       
-      {/* password visible or invisible */}
+      {/* password visible o invisible */}
       {
         (type === "password")
         ? <i 

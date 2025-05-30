@@ -9,13 +9,13 @@ import { UserContext } from '../App';
 
 export const UserAuthForm = ({ type }) => {
 
-  // access_token to store the actual session
+  // access_token para almacenar la sesion actual
   let { userAuth: { access_token }, setUserAuth } = useContext(UserContext);
 
-  // function to send data to the server
+  // funcion para enviar la info al server
   const userAuthThroughServer = (serverRoute, formData) => {
 
-    // making a request using axios library
+    // request con axios
     axios.post(import.meta.env.VITE_SERVER_DOMAIN + serverRoute, formData)
       .then(({data}) => {
         storeInSession("user", JSON.stringify(data));
@@ -34,14 +34,14 @@ export const UserAuthForm = ({ type }) => {
 
   }
 
-  // function submit to login
+  // submit inicio de sesion o signup
   const handleSubmit = (e) => {
     e.preventDefault();
 
     let serverRoute = type === "sign-in" ? "/signin" : "/signup";
 
-    let emailRegex = /^[0-9]{4}[a-z]{1}[0-9]{5}$/; // regex for email/matricula
-    let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/; // regex for password
+    let emailRegex = /^[0-9]{4}[a-z]{1}[0-9]{5}$/; // regex email/matricula
+    let passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$/; // regex password
 
     // form data
     let form = new FormData( formElement );
@@ -51,27 +51,24 @@ export const UserAuthForm = ({ type }) => {
       formData[key] = value;
     }
 
-    // form validations
-
+    // validaciones en front
     let { fullname, matricula, password } = formData;
 
-    // validating the data from frontend
-    // name lenght > 4 characters
     if(fullname){
       if(fullname.length < 4){
         return toast.error("El nombre debe de ser de al menos 4 caracteres.");
       }
     }
-    // matricula length > 0
+    
     if(!matricula.length){
       return toast.error("Ingresa la matricula");
     }
-    // matricula pattern should match
+    
     if(!emailRegex.test(matricula)){
       return toast.error("Matricula invalida.");
     }
     
-    // password pattern should match
+   
     if(!passwordRegex.test(password)){
       return toast.error("La contraseña debe de ser de 6 a 20 caracteres, incluyendo un número, una letra minuscula y 1 letra mayuscula.");
     }
@@ -80,7 +77,7 @@ export const UserAuthForm = ({ type }) => {
 
   }
 
-  // form component to change between sign-in and sign-up
+  // form component para cambiar entre sign-in and sign-up
   return (
     access_token ? <Navigate to="/" />
     :
@@ -88,7 +85,7 @@ export const UserAuthForm = ({ type }) => {
       <section className="h-cover flex items-center justify-center">
         <Toaster />
         <form id="formElement" className="w-[80%] max-w-[400px]">
-          {/* title */}
+          {/* titulo */}
           <h1 className="text-4xl normal-case text-center mb-[35px]">
             { 
               (type === "sign-in") 
@@ -97,7 +94,7 @@ export const UserAuthForm = ({ type }) => {
             }
           </h1>
           
-          {/* Fullname input for sign-up only */}
+          {/* Fullname input para signup solo */}
           {
             (type != "sign-in")
             ? <Input  
@@ -109,7 +106,7 @@ export const UserAuthForm = ({ type }) => {
             : ""
           }
 
-          {/* email input for both */}
+          {/* email input para ambos */}
           
           <div className="inline-flex">
             <Input
@@ -121,7 +118,7 @@ export const UserAuthForm = ({ type }) => {
             <span className="text-dark-grey px-4 mb-4 flex items-center bg-grey rounded-md rounded-l-none border-l-0">@cdacuna.tecnm.mx</span>
           </div>
 
-          {/* password input for both */}
+          {/* password input para ambos */}
           <Input  
             name="password"
             type="password"
@@ -142,7 +139,7 @@ export const UserAuthForm = ({ type }) => {
             }
           </button>
 
-          {/* signin - signup bottom text */}
+          {/* signin - signup texto de abajo */}
           {
             type === "sign-in"
             ? <p className="mt-6 text-dark-grey text-xl text-center">

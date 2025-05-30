@@ -1,11 +1,12 @@
 import { useContext } from "react"
 import { EditorContext } from "../Editor"
 
-
+// componente para la creacion de tags
 export const Tag = ({ tag }) => {
   
   let { post, post: { tags }, setPost } = useContext(EditorContext);
 
+  // borrar tag
   const handleTagDelete = () => {
     tags = tags.filter(t => t != tag);
     

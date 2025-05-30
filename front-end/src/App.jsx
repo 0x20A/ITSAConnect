@@ -6,12 +6,13 @@ import { lookInSession } from "./common/Session";
 import { Editor } from "./editor/Editor";
 import { Home } from "./home/Home";
 
-
+// createContext para compartir los datos del usuario en
+// todas las rutas de la app
 export const UserContext = createContext({});
 
 const App = () => {
 
-    // useState para controlar la sesion activa
+    // almacenando el user auth de forma global
     const [userAuth, setUserAuth] = useState({});
 
     // useEffect para renderizar solo una vez al contenido al iniciar la sesion

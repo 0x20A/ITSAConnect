@@ -1,18 +1,19 @@
 import { useContext } from "react"
 import { Tag } from "../components/Tags"
+import logo from "../../resources/imgs/ITSAConnect Logo.svg"
 import { PageAnimation } from "../../common/PageAnimation"
 import {Toaster, toast} from "react-hot-toast"
 import { EditorContext } from "../Editor"
 import axios from "axios"
 import { UserContext } from "../../App"
-import { useNavigate } from "react-router-dom"
+import { Link, Navigate, useNavigate } from "react-router-dom"
 
 export const PublishForm = () => {
 
   let characterLimit = 200;
   let tagLimit = 2;
   
-  let { post, post: { banner, title, tags, des, content }, setEditorState, setPost } = useContext(EditorContext);
+  let { post, post: { title, tags, des }, /*setEditorState,*/ setPost } = useContext(EditorContext);
 
   let { userAuth: {access_token}} = useContext(UserContext);
 
@@ -20,7 +21,10 @@ export const PublishForm = () => {
 
   // cerrar publishForm
   const handleCloseEvent = () => {
-    setEditorState("editor");
+    // setEditorState("editor");
+    setTimeout(() => {
+        navigate("/");
+      }, 100);
   }
 
   // cambiar titulo en form
@@ -86,7 +90,7 @@ export const PublishForm = () => {
     e.target.classList.add('disable');
 
     let postObj = {
-      title, banner, des, content, tags, draft: false
+      title, des, tags,
     }
 
     axios.post(import.meta.env.VITE_SERVER_DOMAIN + "/create-post", postObj, {
@@ -114,21 +118,32 @@ export const PublishForm = () => {
   
   return (
     <PageAnimation >
-      <section className="w-screen min-h-screen grid items-center lg:grid-cols-2 py-16 lg:gap-4">
+      <nav className="navbar">
+        {/* logo */}
+        <Link to="/" className="flex-none">
+          <img src={ logo } alt="Logo" className="md-w:full md:h-20"/>
+        </Link>
 
+        {/* titulo dinamico */}
+        <p className="max-md:hidden text-black line-clamp-1 w-full text-xl">
+          { title.length ? title : "Titulo" }
+        </p>
+
+        <div className="flex gap-4 ml-auto">
+          <button className="btn-dark py-2 flex"
+            onClick={ handleCloseEvent }
+          >
+            <i className="fi fi-rs-circle-xmark mr-2"></i>
+            Cerrar
+          </button>
+        </div>
+      </nav>
+
+      <section className="w-screen min-h-screen grid items-center lg:grid-cols-2 py-16 lg:gap-4">
         <Toaster/>
-        <button className="w-12 h-12 absolute right-[5vw] z-10 top-[5%] lg:top-[10%]"
-          onClick={ handleCloseEvent }
-        >
-          <i className="fi fi-rs-circle-xmark text-3xl"></i>
-        </button>
 
         <div className="max-w-[550px] center">
           <p className="text-dark-grey mb-1">Vista previa</p>
-
-          {/* <div className="w-full aspect-video rounded-lg overflow-hidden bg-grey mt-4">
-            <img src={ banner } />
-          </div> */}
 
           <h1 className="text-4xl font-medium mt-2 leading-tight line-clamp-2">
             { title }

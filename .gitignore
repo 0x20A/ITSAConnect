@@ -3,13 +3,14 @@
 /front-end/src/pages
 /todo.txt
 
-# librarys
+# librarys front
 /front-end/node_modules/
 /front-end/vite.config.js/
 /front-end/tailwind.config.js
 /front-end/postcss.config.js
 /front-end/package-lock.json
-
-# server-side
-/server
 /front-end/.env
+
+# backend
+/server/.env
+/server/node_modules

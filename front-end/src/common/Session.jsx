@@ -1,5 +1,5 @@
 
-// storing the session after login
+// almacenando en sessionstorage despues de logear
 export const storeInSession = (key, value) => {
    return sessionStorage.setItem(key, value);
 }

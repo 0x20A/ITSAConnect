@@ -5,7 +5,7 @@ import { UserContext } from '../../App';
 import { removeFromSession } from '../../common/Session';
 
 
-
+// componente de nav al presionar foto de perfil
 export const UserNavigation = () => {
 
   const { userAuth: { username }, setUserAuth } = useContext(UserContext);
@@ -29,18 +29,18 @@ export const UserNavigation = () => {
           <p>Publicar</p>
         </Link>
 
-        {/* profile button */}
-        <Link to={`/user/${username}`} className="link pl-8 py-4">
+        {/* profile button /user/${username}*/}
+        <Link to="/" className="link pl-8 py-4">
           Perfil
         </Link>
 
-        {/* dashboard button */}
-        <Link to="/dashboard/blogs" className="link pl-8 py-4">
-          Dashboard
+        {/* dashboard button /dashboard/posts*/}
+        <Link to="/" className="link pl-8 py-4">
+          Mis publicaciones
         </Link>
 
-        {/* settings button */}
-        <Link to="/settings/edit-profile" className="link pl-8 py-4">
+        {/* settings button /settings/edit-profile*/}
+        <Link to="/" className="link pl-8 py-4">
           Ajustes
         </Link>
 

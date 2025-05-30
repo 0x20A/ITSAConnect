@@ -1,5 +1,5 @@
 
-// exportando tools de EditorJS
+// config de EditorJS = exportando tools de EditorJS
 import Embed from "@editorjs/embed";
 import List from "@editorjs/list";
 import Image from "@editorjs/image";
@@ -9,7 +9,6 @@ import Marker from "@editorjs/marker";
 import InlineCode from "@editorjs/inline-code";
 import Link from "@editorjs/link";
 import Code from "@editorjs/code";
-//TODO: import uploadImage from "supabase" 
 
 // funcion para subir imagenes al editor mediante links
 const uploadImageByUrl = (e) => {

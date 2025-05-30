@@ -6,7 +6,7 @@ import { UserNavigation } from './components/UserNavigation';
 
 export const NavBar = () => {
 
-  // search box visibility function on sm screens
+  // search box visibility function en pantallas pequenas
   const [ searchBoxVisibility, setSearchBoxVisibility] = useState(false);
 
   // user navigation state
@@ -20,17 +20,17 @@ export const NavBar = () => {
     setUserNavPanel(currentValue => !currentValue);
   }
 
-  // function to get out of focus the nav panel when clicking outside
+  // function para quitar el focus de la search box
   const handleBlur = () => {
     setTimeout(() => {
       setUserNavPanel(false);
     }, 200);
   }
  
+  // si esta auth, mostrar foto de perfil
   const { userAuth, userAuth: { access_token, profile_img } } = useContext(UserContext);
 
   return (
-    // starting the navbar
     <>
       <nav className="navbar">
         {/*logo */}
@@ -67,14 +67,14 @@ export const NavBar = () => {
           {
             access_token ?
             <>
-              {/* notification button */}
-              <Link to="/dashboard/notification">
+              {/* boton notificacion /dashboard/notifications*/}
+              <Link to="#">
                 <button className="w-12 h-12 rounded-full bg-grey relative hover:bg-black/10">
                   <i className="fi fi-rr-bell text-2xl block mt-1"></i>
                 </button>
               </Link>
 
-              {/* profile picture button */}
+              {/* boton foto de perfil */}
               <div className="relative" onClick={ handleUserNavPanel } onBlur={ handleBlur }>
                 <button 
                   className="w-12 h-12 mt-1">
