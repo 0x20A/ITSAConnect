@@ -9,7 +9,7 @@ import { PostCard } from "./components/PostCard";
 
 export const Home = () => {
 
-  const [posts, setPosts] = useState(null);
+  const [posts, setPosts] = useState([]);
 
   // access_token para verificar la sesion actual
   let { userAuth: { access_token }, setUserAuth } = useContext(UserContext);
@@ -51,7 +51,7 @@ export const Home = () => {
           {/* renderizando los ultimos 10 posts */}
           <>
             {
-              posts === null ? <Loader /> :
+              !Array.isArray(posts) || posts === null ? <Loader /> :
               posts.map((post, i) => {
                 return <PageAnimation transition={{ duration: 1, delay: i*.1}} key={i}>
 
