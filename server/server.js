@@ -3,6 +3,8 @@ import mongoose from 'mongoose';
 import 'dotenv/config';
 import jwt from 'jsonwebtoken';
 import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
 
 // importacion de los schemas
 import User from './Schema/User.js';
@@ -12,7 +14,7 @@ import { nanoid } from 'nanoid';
 
 // server a puerto 3000
 const server = express();
-let PORT = 3000;
+let PORT = process.env.PORT;
 
 let emailRegex = /^[0-9]{4}[a-z]{1}[0-9]{5}$/; // regex email/matricula
 
@@ -58,6 +60,18 @@ const formatDataToSend = (user) => {
     fullname: user.personal_info.fullname
   }
 }
+
+// rutas a directorio de dist
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// servir archivos estaticos
+server.use(express.static(path.join(__dirname, './public')));
+
+// para rutas tipo SPA (React Router)
+server.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
 
 // making routes
 // post => registro
@@ -213,5 +227,5 @@ server.post('/create-post', verifyJWT, (req, res) => {
 
 // inicializando el serverd
 server.listen(PORT, () => {
-  console.log('listeningggg on port -> ' + PORT);
+  console.log('Server running on Port -> ' + PORT);
 })
