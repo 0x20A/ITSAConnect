@@ -51,11 +51,11 @@ export const Home = () => {
           {/* renderizando los ultimos 10 posts */}
           <>
             {
-              !Array.isArray(posts) || posts === null ? <Loader /> :
+              posts.length === 0 ? <Loader /> :
               posts.map((post, i) => {
                 return <PageAnimation transition={{ duration: 1, delay: i*.1}} key={i}>
 
-                  <PostCard content={ post } author={post.author.personal_info}/>
+                  <PostCard content={ post } author={ post.author.personal_info }/>
                 </PageAnimation>
               })
             }

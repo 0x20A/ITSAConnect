@@ -61,18 +61,6 @@ const formatDataToSend = (user) => {
   }
 }
 
-// rutas a directorio de dist
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
-
-// servir archivos estaticos
-server.use(express.static(path.join(__dirname, './public')));
-
-// para rutas tipo SPA (React Router)
-server.get('*', (req, res) => {
-  res.sendFile(path.join(__dirname, './public/index.html'));
-});
-
 // making routes
 // post => registro
 server.post("/signup", (req, res) => {
@@ -224,6 +212,18 @@ server.post('/create-post', verifyJWT, (req, res) => {
   })
 
 })
+
+// rutas a directorio de dist
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+// servir archivos estaticos
+server.use(express.static(path.join(__dirname, './public')));
+
+// para rutas tipo SPA (React Router)
+server.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, './public/index.html'));
+});
 
 // inicializando el serverd
 server.listen(PORT, () => {
